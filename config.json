@@ -1,0 +1,20 @@
+{
+  "TELEGRAM_TOKEN": "8531952637:AAEgU26bs5ZzycCTBs_5Hv5eG7IhqjrjR6Q",
+  "ADMIN_ID": 248865129,
+  "CHANNEL_ID": "@fahrgefuel",
+  "OPENAI_API_KEY": "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",
+  "GOOGLE_API_KEY": "AIzaSyAB6T2u9xQbGTKPLm-WVLQ_S9DwfHTuZNo",
+  "GOOGLE_CX": "b620db2fa1fa841a7",
+  "MODEL": "gpt-4o-mini",
+  "DAILY_TIME": "13:30",
+  "TOPICS": {
+    "0": "#коротко",
+    "1": "#лонг",
+    "2": "#музыка",
+    "3": "#мото",
+    "4": "#кино",
+    "5": "Сюрприз",
+    "6": "Микс"
+  },
+  "STYLE_PROMPT": "You are an editor of an emotional automotive storytelling channel in Russian. Write vivid, atmospheric posts about cars, motorcycles, driving experiences, focusing on sensory details, road mood, and human connection to vehicles."
+}
