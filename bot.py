@@ -86,11 +86,10 @@ def button_handler(update: Update, context: CallbackContext):
         query.message.reply_text("Публикация отменена.")
 
 def message_handler(update: Update, context: CallbackContext):
-    text = update.message.text
     if ADMIN_ID != update.message.chat_id:
         return
-    if ADMIN_ID in final_text and text and text.lower() != "без правок" and ADMIN_ID not in awaiting_photos:
-        prompt = f"Перепиши текст с учётом правок: {text}. Исходный текст:\n{final_text[ADMIN_ID]}"
+    if ADMIN_ID in final_text and update.message.text and update.message.text.lower() != "без правок" and ADMIN_ID not in awaiting_photos:
+        prompt = f"Перепиши текст с учётом правок: {update.message.text}. Исходный текст:\n{final_text[ADMIN_ID]}"
         resp = openai.ChatCompletion.create(
             model=MODEL,
             messages=[
@@ -107,11 +106,11 @@ def message_handler(update: Update, context: CallbackContext):
         ]
         update.message.reply_text(final_text[ADMIN_ID], reply_markup=InlineKeyboardMarkup(keyboard))
     if ADMIN_ID in awaiting_photos and update.message.photo:
+        if f"{ADMIN_ID}_photos" not in context.bot_data:
+            context.bot_data[f"{ADMIN_ID}_photos"] = []
         photo_file = update.message.photo[-1].get_file()
         photo_path = f"/tmp/{photo_file.file_unique_id}.jpg"
         photo_file.download(photo_path)
-        if f"{ADMIN_ID}_photos" not in context.bot_data:
-            context.bot_data[f"{ADMIN_ID}_photos"] = []
         context.bot_data[f"{ADMIN_ID}_photos"].append(photo_path)
         if len(context.bot_data[f"{ADMIN_ID}_photos"]) >= 5:
             media = []
